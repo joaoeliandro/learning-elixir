@@ -22,7 +22,11 @@ defmodule ClassAutomatos do
       if first_value and last_value do
         {:ok, "matched values"}
       else
-        {:error, "unmatched values"}
+        if !first_value and last_value do
+          {:ok, "matched values"}
+        else
+          {:error, "unmatched values"}
+        end
       end
     end
   end
