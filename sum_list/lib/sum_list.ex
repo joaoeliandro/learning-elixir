@@ -1,5 +1,10 @@
 defmodule SumList do
-  def hello do
-    :world
+  def call(list), do: sum(list, 0)
+
+  defp sum([], accumulator), do: accumulator
+
+  defp sum([head | tail], accumulator) do
+    accumulator = accumulator + head
+    sum(tail, accumulator)
   end
 end
