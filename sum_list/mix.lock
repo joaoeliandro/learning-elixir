@@ -1,0 +1,3 @@
+%{
+  "lcov_ex": {:hex, :lcov_ex, "0.1.1", "73994c7e806ccd45d9ac7431fa388feeb613ad7657142da3120fb8c35125efc0", [:mix], [], "hexpm", "e981ff5259b0c6845333579d3e9f0d766a1afa7eed9394792a045f44b854305d"},
+}
