@@ -23,4 +23,18 @@ defmodule OrderVectorTest do
   test "insert_vector/3" do
     assert OrderVector.insert_vector(@vector, 0, 8) == [8, 1, 2, 7, 3, 4, 5]
   end
+
+  test "insert_vector_sorted/2" do
+    vector = OrderVector.insert_vector_sorted([], 2)
+    assert vector == [2]
+
+    vector = OrderVector.insert_vector_sorted(vector, 3)
+    assert vector == [2, 3]
+
+    vector = OrderVector.insert_vector_sorted(vector, 1)
+    assert vector == [1, 2, 3]
+
+    vector = OrderVector.insert_vector_sorted(vector, 8)
+    assert vector == [1, 2, 3, 8]
+  end
 end
