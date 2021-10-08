@@ -6,11 +6,15 @@ defmodule OrderVector do
 
   @spec linear_find(list, integer) :: nil | non_neg_integer
   def linear_find(vector, value) do
-    sorted_vector =
+    index =
       vector
       |> sorted_vector()
+      |> Enum.find_index(fn elem -> elem > value || elem == nil end)
 
-    Enum.find_index(sorted_vector, fn elem -> elem > value || elem == nil end)
+    case index do
+      nil -> -1
+      _ -> index
+    end
   end
 
   defp sorted_vector(vector), do: Enum.sort(vector)
@@ -24,6 +28,27 @@ defmodule OrderVector do
   @spec insert_vector(list, integer, integer) :: [...]
   def insert_vector(vector, index, value) do
     List.insert_at(vector, index, value)
+  end
+
+  @spec insert_vector_sorted(list, integer) :: [...]
+  def insert_vector_sorted(vector, value) when length(vector) > 1 do
+    sorted_vector =
+      vector
+      |> sorted_vector()
+
+    index = linear_find(sorted_vector, value)
+
+    insert_vector(sorted_vector, index, value)
+  end
+
+  def insert_vector_sorted(vector, value) when length(vector) == 1 do
+    index = linear_find(vector, value)
+
+    insert_vector(vector, index, value)
+  end
+
+  def insert_vector_sorted(vector, value) when length(vector) == 0 do
+    insert_vector(vector, 0, value)
   end
 
   defp find_remove(vector, value) do
