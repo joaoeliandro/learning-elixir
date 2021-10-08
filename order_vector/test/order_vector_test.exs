@@ -36,5 +36,8 @@ defmodule OrderVectorTest do
 
     vector = OrderVector.insert_vector_sorted(vector, 8)
     assert vector == [1, 2, 3, 8]
+
+    vector = OrderVector.insert_vector_sorted(vector, 5)
+    assert vector == [1, 2, 3, 5, 8]
   end
 end
